@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9ff6a4c3d2ae54d94ed2fca338ac39, type: 3}
+  m_Name: PrefabSettings
+  m_EditorClassIdentifier: 
+  BlockPrefab: {fileID: 2775301744238688631, guid: e72c5b34f8104f1449c448e5ebb1df4c, type: 3}
+  DroppingBlockPrefab: {fileID: 2775301744238688631, guid: eb6ce5f56f9003c40aabdb0c2831f95f, type: 3}
+  CharacterPrefab: {fileID: 8289125737657927238, guid: 50b292d0bab542048b1a03d9599491ec, type: 3}
+  FinishBlockPrefab: {fileID: 4361881497256157143, guid: e7b7c20e45b3eee4f972abc68ae37885, type: 3}

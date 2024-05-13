@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb97d79c1d8ea564183592a61ba2b4dd, type: 3}
-  m_Name: AudioSettingInstaller
+  m_Script: {fileID: 11500000, guid: 01759da1b1659204c895dfd7013536ed, type: 3}
+  m_Name: BlockMovementSettingInstaller
   m_EditorClassIdentifier: 
-  AudioSetting: {fileID: 11400000, guid: 7c4b1763fa3705049ab94fb80aa21caa, type: 2}
+  BlockMovementSetting: {fileID: 11400000, guid: 19ff68efe6a3f7041aa53c3ad2784dd9, type: 2}

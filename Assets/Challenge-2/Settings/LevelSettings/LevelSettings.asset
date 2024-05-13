@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb97d79c1d8ea564183592a61ba2b4dd, type: 3}
-  m_Name: AudioSettingInstaller
+  m_Script: {fileID: 11500000, guid: 63b7b2d833e3df34eb944ea12c347a58, type: 3}
+  m_Name: LevelSettings
   m_EditorClassIdentifier: 
-  AudioSetting: {fileID: 11400000, guid: 7c4b1763fa3705049ab94fb80aa21caa, type: 2}
+  levelDatas:
+  - LevelBlockCount: 10
+    LevelDroppingBlockCount: 3

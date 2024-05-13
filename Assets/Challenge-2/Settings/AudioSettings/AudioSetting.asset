@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c72637771767dda48b3bca77e949c050, type: 3}
-  m_Name: Settings
+  m_Name: AudioSetting
   m_EditorClassIdentifier: 
   PitchIncreaseRate: 0.125
   CachedAudioSourceCount: 3

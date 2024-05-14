@@ -15,5 +15,7 @@ MonoBehaviour:
   levelDatas:
   - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
     LevelBlockCount: 10
-    LevelMaxBlockCount: 0
-    LevelDroppingBlockCount: 3
+    LevelDroppingBlockCount: 5
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 3
+    LevelDroppingBlockCount: 5

@@ -9,8 +9,8 @@ public class LevelCreator : ILevelCreator
     [Inject] private DroppingBlock.Factory _droppingBlockFactory;
     [Inject] private Player.Factory _playerFactory;
 
-
     private RuntimeLevelData _currentLevelData;
+
     public void CreateLevel(Vector3 startPos, LevelData data)
     {
         var emptyRootObject = new GameObject("Level Root : " + data.GetHashCode().ToString());
@@ -69,7 +69,6 @@ public class LevelCreator : ILevelCreator
     private List<DroppingBlock> CreateDroppingBlocks(Transform root, LevelData data)
     {
         var blocks = new List<DroppingBlock>();
-
         for (int i = 0; i < data.LevelDroppingBlockCount; i++)
         {
             DroppingBlock block = _droppingBlockFactory.Create();
@@ -79,6 +78,16 @@ public class LevelCreator : ILevelCreator
             go.transform.parent = root;
         }
         return blocks;
+    }
+
+    public DroppingBlock GetDroppingBlock()
+    {
+        var blocks = _currentLevelData.DroppingBlocks;
+        foreach (var block in blocks)
+        {
+            if (!block.gameObject.activeSelf) return block;
+        }
+        return null;
     }
 
     private Player CreatePlayer(Vector3 startPos)

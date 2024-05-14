@@ -14,6 +14,5 @@ public struct LevelData
 {
     public Vector3 LevelBlockSize;
     public int LevelBlockCount;
-    public int LevelMaxBlockCount;
     public int LevelDroppingBlockCount;
 }

@@ -4,15 +4,8 @@ using Zenject;
 
 public class CMCameraController : MonoBehaviour, ICameraController
 {
-    [Inject] private ILevelCreator _levelCreator;
     [SerializeField] private CinemachineVirtualCamera _cm;
 
-    private void Awake()
-    {
-        var player = _levelCreator.GetRuntimeLevelData().Player;
-        player.OnFall += ReleaseTarget;
-        SetTarget(player.transform);
-    }
 
     public void ReleaseTarget()
     {

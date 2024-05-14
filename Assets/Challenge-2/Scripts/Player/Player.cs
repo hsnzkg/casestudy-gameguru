@@ -11,10 +11,7 @@ public class Player : MonoBehaviour
     [Inject] private BlockWaypointController _blockWaypointController;
     [Inject] private IAudioService _audioService;
     [Inject] private PlayerSettings _playerSettings;
-
     [SerializeField] private RagdollController _ragdollController;
-
-    public Action OnFall;
 
     private PlayerAnimationController _animationController;
     private Rigidbody _rb;
@@ -22,6 +19,8 @@ public class Player : MonoBehaviour
     private float _accelerationRate = 0f;
     private int _curveIndex = 0;
     private Transform _currentBlock;
+
+    public Action OnFall;
 
     private void Awake()
     {
@@ -40,6 +39,8 @@ public class Player : MonoBehaviour
     {
         if (!_isActive) return;
         _isActive = false;
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
         _animationController.UpdateAnimation(_isActive);
     }
 

@@ -6,4 +6,9 @@ public static class DatabaseController
     {
         return PlayerPrefs.GetInt("LevelIndex", 0);
     }
+
+    public static void SetLevelIndex(int index)
+    {
+        PlayerPrefs.SetInt("LevelIndex", index);
+    }
 }

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f313616698754a348a1c6505f808e227, type: 3}
-  m_Name: BlockSettings
+  m_Script: {fileID: 11500000, guid: d51fdab03e6d353489db24f9d2e6a348, type: 3}
+  m_Name: PlayerSetting
   m_EditorClassIdentifier: 
-  BlockMovementDelta: 5
-  SplitGoodThreshold: 10
-  SplitBadThreshold: 8
+  AccelerationRate: 1
+  DeAccelerationRate: 2
+  MovementDelta: 125
+  RotationDelta: 10

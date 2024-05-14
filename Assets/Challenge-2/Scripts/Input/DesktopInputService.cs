@@ -30,7 +30,7 @@ public class DesktopInputService : MonoBehaviour, IInputService
     private void Update()
     {
         if (!_isActive) return;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             OnPress?.Invoke();
         }

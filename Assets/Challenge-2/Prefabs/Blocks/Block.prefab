@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa91e773fce37f3479a4f523c7b43187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _materialChanger: {fileID: 2160295230218903734}
 --- !u!114 &2160295230218903734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ad2aff58694c64ba446d8c6f146406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _materials:
+  _mats:
   - {fileID: 2100000, guid: e3191679f52b677458aea66646f63353, type: 2}
   - {fileID: 2100000, guid: 4e1751ea8f4688d4fb96b6c7bb5b0588, type: 2}
   - {fileID: 2100000, guid: b7750c02b06b8484899a4da0c71897d4, type: 2}

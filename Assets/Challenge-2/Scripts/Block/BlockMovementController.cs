@@ -5,8 +5,11 @@ public class BlockMovementController : MonoBehaviour
 {
     [Inject] private BlockWaypointController _waypoingController;
     [Inject] private BlockMovementSetting _setting;
+    [Inject] private ILevelCreator _levelCreator;
     [Inject] private IInputService _inputService;
     [Inject] private IAudioService _audioService;
+
+    [SerializeField] private BlockMaterialChanger _materialChanger;
 
     private bool _activatedOnce = false;
     private bool _isActive = false;
@@ -14,14 +17,6 @@ public class BlockMovementController : MonoBehaviour
     private Vector3 _centerPosition;
     private Vector3 _initialScale;
     public bool ActivatedOnce => _activatedOnce;
-
-
-    [Inject]
-    public void Construct(BlockMovementSetting setting)
-    {
-        _setting = setting; 
-
-    }
 
     public void SetInitialScale(Vector3 scale)
     {
@@ -53,20 +48,39 @@ public class BlockMovementController : MonoBehaviour
 
     private void Split(float threshold)
     {
-        var currentScale = transform.localScale;
-        var currentPosition = transform.position;
+        var direction = threshold > 0 ? -1 : 1; 
+        float newXSize = transform.localScale.x - Mathf.Abs(threshold);
+        float fallingBlockSize = transform.localScale.x - newXSize;
 
-        float newSize = currentScale.x - Mathf.Abs(threshold);
-        float fallingBlockSize = currentScale.x;
-        float newXPosition = currentPosition.x + threshold * 0.5f;
-        transform.localScale = new Vector3(newSize, currentScale.y, currentScale.z);
-        transform.position = new Vector3(newXPosition, currentPosition.y, currentPosition.z);
+        float newXPosition = transform.position.x + threshold * 0.5f;
+        transform.localScale = new Vector3(newXSize, transform.localScale.y, transform.localScale.z);
+        transform.position = new Vector3(newXPosition, transform.position.y, transform.position.z);
+
+        var cubeEdge = transform.position.x + (newXSize / 2f * direction);
+        var fallingBlockXPosition = cubeEdge + fallingBlockSize / 2f * direction;
+
+        SpawnDropCube(fallingBlockXPosition,fallingBlockSize);
+    }
+
+    private void SpawnDropCube(float xPosition,float fallingBlockSize)
+    {
+        var block = _levelCreator.GetDroppingBlock();
+        if(block != null)
+        {
+
+            block.ColorController.ChangeMaterial(_materialChanger.material);
+
+            block.gameObject.transform.localScale = new Vector3(fallingBlockSize, transform.localScale.y, transform.localScale.z);
+            block.gameObject.transform.position = new Vector3(xPosition, transform.position.y, transform.position.z);
+            block.Activate();
+            _audioService.PlaySound("brick");
+        }
     }
 
     private void OnPress()
     {
         var currentScale = transform.localScale.x;
-        var scaleDifPerc = currentScale / _initialScale.x;
+        
         var threshold = CalculateThreshold();
         float scaleFactor = _initialScale.x / currentScale;
         

@@ -7,14 +7,13 @@ using Zenject;
 [RequireComponent(typeof(PlayerAnimationController))]
 public class Player : MonoBehaviour
 {
-    [Inject] private BlockWaypoingController _blockWaypoingController;
+    [Inject] private BlockWaypointController _blockWaypointController;
     [Inject] private IAudioService _audioService;
     [Inject] private PlayerSettings _playerSettings;
     
     private PlayerAnimationController _animationController;
     private Rigidbody _rb;
-    private CapsuleCollider _collider;
-    private Vector3 _targetPosition;
+
     private bool _isActive = false;
     private float _accelerationRate = 0f;
     private Transform _currentBlock;
@@ -29,7 +28,7 @@ public class Player : MonoBehaviour
         if (_isActive) return;
         _isActive = true;
         _animationController.UpdateAnimation(_isActive);
-        _currentBlock = _blockWaypoingController.CurrentBlock;
+        _currentBlock = _blockWaypointController.CurrentBlock;
     }
 
     public void Deactivate()
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
 
     private void Init()
     {
-        _collider = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _animationController = GetComponent<PlayerAnimationController>();
     }
@@ -56,14 +54,9 @@ public class Player : MonoBehaviour
         _accelerationRate = Mathf.Clamp(_accelerationRate - _playerSettings.DeAccelerationRate * Time.deltaTime, 0f, 1f);
     }
 
-    public void UpdateTargetPosition(Vector3 newPos)
-    {
-        _targetPosition = newPos;
-    }
-
     private Vector3 GetNormalizedDir()
     {
-        var value = (_targetPosition - transform.position).normalized;
+        var value = (_currentBlock.position - transform.position).normalized;
         value.y = 0f;
         return value;
     }
@@ -118,20 +111,20 @@ public class Player : MonoBehaviour
 
     private void OnTargetReach()
     {
-        _blockWaypoingController.OnTargetReach();
-        _currentBlock = _blockWaypoingController.CurrentBlock;
+        _blockWaypointController.OnTargetReach();
+        _currentBlock = _blockWaypointController.CurrentBlock;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_isActive)
         {
             Accelerate();
-            UpdateTargetPosition(_currentBlock.transform.position);
-            UpdateVelocity();
-            UpdateRotation();
-            if(IsFalling()) OnFall();
-            if(CheckDistance())OnTargetReach();
+            if (IsFalling()) OnFall();
+            if (CheckDistance())
+            {
+                OnTargetReach();
+            }
         }
         else
         {
@@ -139,10 +132,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (_isActive)
+        {
+            UpdateVelocity();
+            UpdateRotation(); 
+        }
+    }
+
     private void OnDrawGizmos()
     {
+        if (!_currentBlock) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, _targetPosition);
+        Gizmos.DrawLine(transform.position, _currentBlock.position);
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + GetNormalizedDir() * 10f);

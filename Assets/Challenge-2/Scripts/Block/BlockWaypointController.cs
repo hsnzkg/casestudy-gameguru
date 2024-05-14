@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class BlockWaypoingController : MonoInstaller
+public class BlockWaypointController : MonoInstaller
 {
     [Inject]private ILevelCreator _levelCreator;
 
@@ -22,22 +22,24 @@ public class BlockWaypoingController : MonoInstaller
         {
             currentBlock.Prepare(previousBlock.transform.position,previousBlock.transform.localScale);
             currentBlock.Activate();
-            CurrentBlock = currentBlock.gameObject.transform;
+            if(CurrentBlock == null) CurrentBlock = currentBlock.gameObject.transform;
         }
     }
 
     public void OnTargetReach()
     {
         var runtimeData = _levelCreator.GetRuntimeLevelData();
-        var currentIndex = CurrentWaypointIndex + 1;
-        if(currentIndex >= runtimeData.Blocks.Count)
+        var incrementedIndex = CurrentWaypointIndex + 1;
+  
+        if(incrementedIndex >= runtimeData.Blocks.Count)
         {
             CurrentBlock = runtimeData.FinishBlock.transform;
         }
         else
         {
-            currentIndex = Mathf.Clamp(CurrentWaypointIndex + 1, 0, runtimeData.Blocks.Count - 1);
-            CurrentWaypointIndex = currentIndex;
+            incrementedIndex = Mathf.Clamp(incrementedIndex, 0, runtimeData.Blocks.Count - 1);
+            CurrentWaypointIndex = incrementedIndex;
+            CurrentBlock = runtimeData.Blocks[incrementedIndex].transform;
         }
     }
 

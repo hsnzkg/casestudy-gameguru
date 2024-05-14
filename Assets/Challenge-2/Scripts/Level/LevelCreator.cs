@@ -6,6 +6,7 @@ public class LevelCreator : ILevelCreator
 {
     [Inject] private PrefabSettings _prefabSetting;
     [Inject] private BlockMovementController.Factory _blockMovementControllerFactory;
+    [Inject] private DroppingBlock.Factory _droppingBlockFactory;
     [Inject] private Player.Factory _playerFactory;
 
 
@@ -15,13 +16,14 @@ public class LevelCreator : ILevelCreator
         var emptyRootObject = new GameObject("Level Root : " + data.GetHashCode().ToString());
         var blocks = CreateBlocks(startPos, emptyRootObject.transform,data);
         var finishBlock = CreateFinishBlock(startPos, emptyRootObject.transform, data);
-        CreateDroppingBlocks(emptyRootObject.transform,data);
+        var droppingBlocks = CreateDroppingBlocks(emptyRootObject.transform,data);
         var player = CreatePlayer(startPos);
         var runtimeLevelData = new RuntimeLevelData()
         {
             Blocks = blocks,
+            DroppingBlocks = droppingBlocks,
             FinishBlock = finishBlock,
-            Player = player 
+            Player = player,
         };
         _currentLevelData = runtimeLevelData;
     }
@@ -64,16 +66,19 @@ public class LevelCreator : ILevelCreator
         return finishBlock;
     }
 
-    private void CreateDroppingBlocks(Transform root, LevelData data)
+    private List<DroppingBlock> CreateDroppingBlocks(Transform root, LevelData data)
     {
+        var blocks = new List<DroppingBlock>();
+
         for (int i = 0; i < data.LevelDroppingBlockCount; i++)
         {
-            GameObject go = Object.Instantiate(_prefabSetting.DroppingBlockPrefab, root);
+            DroppingBlock block = _droppingBlockFactory.Create();
+            blocks.Add(block);
+            var go = block.gameObject;
             go.SetActive(false);
-
-            var desiredPosition = Vector3.zero;
-            go.transform.position = desiredPosition;
+            go.transform.parent = root;
         }
+        return blocks;
     }
 
     private Player CreatePlayer(Vector3 startPos)
@@ -87,13 +92,15 @@ public class LevelCreator : ILevelCreator
 public struct RuntimeLevelData
 {
     public List<BlockMovementController> Blocks;
+    public List<DroppingBlock> DroppingBlocks;
     public Player Player;
     public GameObject FinishBlock;
 
-    public RuntimeLevelData(List<BlockMovementController> blocks,Player player,GameObject finishBlock)
+    public RuntimeLevelData(List<BlockMovementController> blocks,List<DroppingBlock> droppingBlocks,Player player,GameObject finishBlock)
     {
         Blocks = blocks;
         Player = player;
         FinishBlock = finishBlock;
+        DroppingBlocks = droppingBlocks;
     }
 }

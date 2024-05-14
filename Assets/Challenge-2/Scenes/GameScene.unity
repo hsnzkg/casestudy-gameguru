@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &1252912051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 729271333689606453, guid: f65ace00a9b7da44fb1bb5597cedb294, type: 3}
+  m_PrefabInstance: {fileID: 729271334938094214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3c67989c440e7478d0740c34d56780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1458362373 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2101365700961122437, guid: 6ff0debf8a73e1345b2cc789fc457a7a, type: 3}
@@ -532,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 5297989355699191310, guid: e496ac6cfb8cba542b66ed6ae2ca708c, type: 3}
       propertyPath: _monoInstallers.Array.data[1]
       value: 
-      objectReference: {fileID: 1458362373}
+      objectReference: {fileID: 1252912051}
     - target: {fileID: 5297989355699191310, guid: e496ac6cfb8cba542b66ed6ae2ca708c, type: 3}
       propertyPath: _installerPrefabs.Array.data[0]
       value: 

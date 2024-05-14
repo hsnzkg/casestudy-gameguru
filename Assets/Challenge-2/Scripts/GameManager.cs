@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     IInputService _inputService;
 
     [Inject]
-    BlockWaypoingController _blockWaypoingController;
+    BlockWaypointController _BlockWaypointController;
 
     private void Awake()
     {
@@ -30,7 +30,14 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         _inputService.UnRegisterActionToPress(StartGame);
-        _blockWaypoingController.ConfigureBlock();
+        _BlockWaypointController.ConfigureBlock();
         _levelCreator.GetRuntimeLevelData().Player.Activate();
+    }
+
+    public void FinishGame(bool isDone)
+    {
+        var runtimeData = _levelCreator.GetRuntimeLevelData();
+        var player = runtimeData.Player;
+        player.Deactivate();
     }
 }

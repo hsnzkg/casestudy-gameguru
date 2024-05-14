@@ -1,10 +1,9 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using Zenject;
 
 public class BlockMovementController : MonoBehaviour
 {
-    [Inject] private BlockWaypoingController _waypoingController;
+    [Inject] private BlockWaypointController _waypoingController;
     [Inject] private BlockMovementSetting _setting;
     [Inject] private IInputService _inputService;
     [Inject] private IAudioService _audioService;

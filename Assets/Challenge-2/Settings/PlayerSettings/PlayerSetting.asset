@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51fdab03e6d353489db24f9d2e6a348, type: 3}
   m_Name: PlayerSetting
   m_EditorClassIdentifier: 
-  AccelerationRate: 1
+  AccelerationRate: 1.5
   DeAccelerationRate: 2
   MovementDelta: 100
-  RotationDelta: 5
+  RotationDelta: 10

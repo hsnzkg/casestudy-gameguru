@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 30556687919352520}
   - component: {fileID: 2848659172699078146}
   - component: {fileID: -5192115327394674602}
-  m_Layer: 0
+  - component: {fileID: -9195980675208941954}
+  m_Layer: 6
   m_Name: FinishBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,3 +96,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &-9195980675208941954
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361881497256157143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.06
+  m_Center: {x: 0, y: 0.8, z: 0}

@@ -4,16 +4,16 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     [Inject]
-    ILevelCreator _levelCreator;
+    private ILevelCreator _levelCreator;
 
     [Inject]
-    LevelSettings _levelSetting;
+    private LevelSettings _levelSetting;
 
     [Inject]
-    IInputService _inputService;
+    private IInputService _inputService;
 
     [Inject]
-    BlockWaypointController _BlockWaypointController;
+    private BlockWaypointController _blockWaypointController;
 
     private void Awake()
     {
@@ -24,20 +24,22 @@ public class GameManager : MonoBehaviour
     {
         _levelCreator.CreateLevel(Vector2.zero, _levelSetting.levelDatas[DatabaseController.GetCurrentLevelIndex()]);
         _inputService.RegisterActionToPress(StartGame);
-        _inputService.Activate();   
+        _inputService.Activate();
+        _blockWaypointController.Init();
     }
 
     private void StartGame()
     {
         _inputService.UnRegisterActionToPress(StartGame);
-        _BlockWaypointController.ConfigureBlock();
+        _blockWaypointController.ConfigureBlock();
         _levelCreator.GetRuntimeLevelData().Player.Activate();
     }
 
     public void FinishGame(bool isDone)
     {
-        var runtimeData = _levelCreator.GetRuntimeLevelData();
-        var player = runtimeData.Player;
-        player.Deactivate();
+        if (isDone)
+        {
+            _levelCreator.GetRuntimeLevelData().Player.Deactivate();
+        }
     }
 }

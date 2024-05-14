@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,21 @@ public class BlockWaypointController : MonoInstaller
     public int CurrentWaypointIndex = 1;
     public Transform CurrentBlock;
     private int CurrentWaypointMovingIndex = 1;
+
+    public void Init()
+    {
+        var player = _levelCreator.GetRuntimeLevelData().Player;
+        player.OnFall += OnFall;
+    }
+
+    private void OnFall()
+    {
+        var blocks = _levelCreator.GetRuntimeLevelData().Blocks;
+        foreach (var b in blocks)
+        {
+            b.DeActivate();
+        }
+    }
 
     public void ConfigureBlock()
     {

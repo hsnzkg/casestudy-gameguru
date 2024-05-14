@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -10,10 +11,13 @@ public class Player : MonoBehaviour
     [Inject] private BlockWaypointController _blockWaypointController;
     [Inject] private IAudioService _audioService;
     [Inject] private PlayerSettings _playerSettings;
-    
+
+    [SerializeField] private RagdollController _ragdollController;
+
+    public Action OnFall;
+
     private PlayerAnimationController _animationController;
     private Rigidbody _rb;
-
     private bool _isActive = false;
     private float _accelerationRate = 0f;
     private int _curveIndex = 0;
@@ -113,11 +117,13 @@ public class Player : MonoBehaviour
         return flag;
     }
 
-    private void OnFall()
+    private void Fall()
     {
         if (_isActive)
         {
+            OnFall?.Invoke();
             Deactivate();
+            _ragdollController.ActivateRagdoll();
             _audioService.PlaySound("fall");
         }
     }
@@ -162,7 +168,7 @@ public class Player : MonoBehaviour
         if (_isActive)
         {
             Accelerate();
-            if (IsFalling()) OnFall();
+            if (IsFalling()) Fall();
             if (CheckDistance())
             {
                 _curveIndex++;

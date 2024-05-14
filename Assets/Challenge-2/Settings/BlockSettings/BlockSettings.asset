@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BlockSettings
   m_EditorClassIdentifier: 
   BlockMovementDelta: 5
-  SplitGoodThreshold: 8
+  SplitGoodThreshold: 10
   SplitBadThreshold: 8

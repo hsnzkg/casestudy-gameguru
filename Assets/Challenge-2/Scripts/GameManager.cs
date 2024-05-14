@@ -12,12 +12,25 @@ public class GameManager : MonoBehaviour
     [Inject]
     IInputService _inputService;
 
-
+    [Inject]
+    BlockWaypoingController _blockWaypoingController;
 
     private void Awake()
     {
-        _inputService.RegisterActionToPress(() => { Debug.Log("Space"); });
-        _inputService.Activate();
+        Init();
+    }
+
+    private void Init()
+    {
         _levelCreator.CreateLevel(Vector2.zero, _levelSetting.levelDatas[DatabaseController.GetCurrentLevelIndex()]);
+        _inputService.RegisterActionToPress(StartGame);
+        _inputService.Activate();   
+    }
+
+    private void StartGame()
+    {
+        _inputService.UnRegisterActionToPress(StartGame);
+        _blockWaypoingController.ConfigureBlock();
+        _levelCreator.GetRuntimeLevelData().Player.Activate();
     }
 }

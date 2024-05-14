@@ -9,10 +9,11 @@ public class LevelSettings : ScriptableObject
     public List<LevelData> levelDatas = new List<LevelData>();
 }
 
-
 [Serializable]
 public struct LevelData
 {
+    public Vector3 LevelBlockSize;
     public int LevelBlockCount;
+    public int LevelMaxBlockCount;
     public int LevelDroppingBlockCount;
 }

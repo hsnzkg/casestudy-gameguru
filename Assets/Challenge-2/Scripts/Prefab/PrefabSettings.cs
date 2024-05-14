@@ -10,4 +10,5 @@ public class PrefabSettings : ScriptableObject
     public GameObject DroppingBlockPrefab;
     public GameObject CharacterPrefab;
     public GameObject FinishBlockPrefab;
+    public GameObject CMPrefab;
 }

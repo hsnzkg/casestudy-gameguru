@@ -6,9 +6,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void UpdateAnimation(bool isRunnning)
     {
-        if (isRunnning)
-        {
-            _animator.SetBool("IsRunning", isRunnning);
-        }
+        _animator.SetBool("IsRunning", isRunnning);
     }
 }

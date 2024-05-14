@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class BlockMovementSetting : ScriptableObject
 {
-    public float HorizontalOffset;
     public float BlockMovementDelta;
+    public float SplitGoodThreshold;
+    public float SplitBadThreshold;
 }

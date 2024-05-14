@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72637771767dda48b3bca77e949c050, type: 3}
   m_Name: AudioSetting
   m_EditorClassIdentifier: 
-  PitchIncreaseRate: 0.125
+  PitchIncreaseRate: 0.075
+  PitchMaxRate: 2
   CachedAudioSourceCount: 3
   AudioClips:
   - ClipName: note
     AudioClip: {fileID: 8300000, guid: 8bee07fb11158c14b905a60fa5034aad, type: 3}
+  - ClipName: fall
+    AudioClip: {fileID: 8300000, guid: fc43f1d6595ff91418b839200ec9bf67, type: 3}

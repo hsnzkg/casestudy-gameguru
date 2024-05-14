@@ -22,7 +22,15 @@ public class AudioService : MonoBehaviour, IAudioService
 
     public void PlaySound(string clipName,float volumeLevel = 0.5f)
     {
-        if (clipName == "note" && _comboListener.IsComboRemaining) IncreasePitch(clipName);
+        if (clipName == "note" && _comboListener.IsComboRemaining)
+        {
+            IncreasePitch(clipName);
+        }
+        else
+        {
+            ResetPitch(clipName);
+        }
+        
         var source = FindSource(clipName);
         if (source == null) return;
         source.volume = volumeLevel;

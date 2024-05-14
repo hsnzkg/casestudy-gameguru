@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     private bool _isActive = false;
     private float _accelerationRate = 0f;
+    private int _curveIndex = 0;
     private Transform _currentBlock;
 
     private void Awake()
@@ -56,7 +57,29 @@ public class Player : MonoBehaviour
 
     private Vector3 GetNormalizedDir()
     {
-        var value = (_currentBlock.position - transform.position).normalized;
+        var pointA = _rb.position;
+        var pointB = _currentBlock.position + Vector3.back * _currentBlock.localScale.z * 0.5f;
+        var pointC = _currentBlock.position;
+        var pointD = _currentBlock.position + Vector3.forward * _currentBlock.localScale.z * 0.5f;
+
+        pointA.y = 0;
+        pointB.y = 0;
+        pointC.y = 0;
+        pointD.y = 0;
+
+        Vector3 value;
+        if (_curveIndex == 0)
+        {
+            value = (pointB - pointA).normalized;
+        }
+        else if(_curveIndex == 1)
+        {
+            value = (pointC - pointA).normalized;
+        }
+        else 
+        {
+            value = (pointD - pointA).normalized;
+        }
         value.y = 0f;
         return value;
     }
@@ -101,12 +124,31 @@ public class Player : MonoBehaviour
 
     private bool CheckDistance()
     {
-        var currentPosition = _rb.position;
-        currentPosition.y = 0;
-        var targetPosition = _currentBlock.transform.position;
-        targetPosition.y = 0;
-        var distance = Mathf.Abs((currentPosition - targetPosition).sqrMagnitude);
-        return distance <= 0.1f; 
+        var pointA = _rb.position;
+        var pointB = _currentBlock.position + Vector3.back * _currentBlock.localScale.z * 0.5f;
+        var pointC = _currentBlock.position;
+        var pointD = _currentBlock.position + Vector3.forward * _currentBlock.localScale.z * 0.5f;
+
+        pointA.y = 0;
+        pointB.y = 0;
+        pointC.y = 0;
+        pointD.y = 0;
+
+        float distance;
+
+        if (_curveIndex == 0)
+        {
+            distance = Mathf.Abs((pointA - pointB).sqrMagnitude);
+        }
+        else if (_curveIndex == 1)
+        {
+            distance = Mathf.Abs((pointA - pointC).sqrMagnitude);
+        }
+        else
+        {
+            distance = Mathf.Abs((pointA - pointD).sqrMagnitude);
+        }
+        return distance <= 0.05f; 
     }
 
     private void OnTargetReach()
@@ -123,7 +165,12 @@ public class Player : MonoBehaviour
             if (IsFalling()) OnFall();
             if (CheckDistance())
             {
-                OnTargetReach();
+                _curveIndex++;
+                if(_curveIndex >= 3)
+                {
+                    _curveIndex = 0;
+                    OnTargetReach();
+                }
             }
         }
         else
@@ -144,9 +191,6 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (!_currentBlock) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, _currentBlock.position);
-
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + GetNormalizedDir() * 10f);
     }

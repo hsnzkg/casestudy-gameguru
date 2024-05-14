@@ -5,9 +5,9 @@ public class BlockWaypointController : MonoInstaller
 {
     [Inject]private ILevelCreator _levelCreator;
 
+    public int CurrentLevelBlockCount => _levelCreator.GetRuntimeLevelData().Blocks.Count;
     public int CurrentWaypointIndex = 1;
     public Transform CurrentBlock;
-
     private int CurrentWaypointMovingIndex = 1;
 
     public void ConfigureBlock()

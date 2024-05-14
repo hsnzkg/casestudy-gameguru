@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
   levelDatas:
-  - LevelBlockSize: {x: 2, y: 0.75, z: 2}
-    LevelBlockCount: 4
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 10
     LevelMaxBlockCount: 0
     LevelDroppingBlockCount: 3

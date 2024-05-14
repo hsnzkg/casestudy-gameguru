@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f313616698754a348a1c6505f808e227, type: 3}
   m_Name: BlockSettings
   m_EditorClassIdentifier: 
-  BlockMovementDelta: 4
+  BlockMovementDelta: 5
   SplitGoodThreshold: 8
-  SplitBadThreshold: 2
+  SplitBadThreshold: 8

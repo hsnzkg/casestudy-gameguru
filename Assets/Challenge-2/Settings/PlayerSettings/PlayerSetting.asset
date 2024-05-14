@@ -15,4 +15,4 @@ MonoBehaviour:
   AccelerationRate: 1.5
   DeAccelerationRate: 2
   MovementDelta: 100
-  RotationDelta: 10
+  RotationDelta: 5

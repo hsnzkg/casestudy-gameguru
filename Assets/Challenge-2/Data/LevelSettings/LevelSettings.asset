@@ -14,8 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDatas:
   - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
-    LevelBlockCount: 10
-    LevelDroppingBlockCount: 5
+    LevelBlockCount: 2
+    LevelDroppingBlockCount: 10
   - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
     LevelBlockCount: 3
-    LevelDroppingBlockCount: 5
+    LevelDroppingBlockCount: 10
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 4
+    LevelDroppingBlockCount: 10
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 5
+    LevelDroppingBlockCount: 10
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 6
+    LevelDroppingBlockCount: 10
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 7
+    LevelDroppingBlockCount: 10
+  - LevelBlockSize: {x: 2.5, y: 0.75, z: 2.5}
+    LevelBlockCount: 8
+    LevelDroppingBlockCount: 10

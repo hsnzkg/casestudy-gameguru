@@ -3,6 +3,7 @@ using Zenject;
 
 public class BlockMovementController : MonoBehaviour
 {
+    [Inject] private FXController _fxController;
     [Inject] private BlockWaypointController _waypoingController;
     [Inject] private BlockMovementSetting _setting;
     [Inject] private ILevelCreator _levelCreator;
@@ -95,6 +96,7 @@ public class BlockMovementController : MonoBehaviour
         {
             if (Mathf.Abs(threshold) <= adjustedSplitGoodThreshold)
             {
+                _fxController.SpawnVFX(transform.localPosition, transform.localScale, Color.white);
                 _audioService.PlaySound("note");
                 _audioService.GetComboListener().SetCombo(true);
                 transform.position = _centerPosition;

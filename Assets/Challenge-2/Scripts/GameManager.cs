@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
             _uiManager.ActivateNextLevelButton();
             _levelCreator.GetRuntimeLevelData().Player.Deactivate();
             DatabaseController.SetLevelIndex(Mathf.Clamp(DatabaseController.GetCurrentLevelIndex()+1,0,_levelSetting.levelDatas.Count-1));
+            _cameraController.SetWinCamera();
         }
         else
         {

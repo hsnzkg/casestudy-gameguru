@@ -8,6 +8,7 @@ public class GameInstaller : MonoInstaller
     {
         Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
         Container.Bind<UIManager>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<FXController>().FromComponentInHierarchy().AsSingle();
 
         Container.Bind<IAudioService>().To<AudioService>().FromNewComponentOnNewGameObject().AsSingle();
         Container.Bind<IInputService>().To<DesktopInputService>().FromNewComponentOnNewGameObject().AsSingle();

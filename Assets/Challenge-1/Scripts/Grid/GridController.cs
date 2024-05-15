@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Case_1
 {
@@ -72,6 +73,7 @@ namespace Case_1
                 {
                     GetCell(item).ResetCell();
                 }
+                _uiManager.OnMatch();
             }
         }
 
@@ -106,7 +108,7 @@ namespace Case_1
             return cells;
         }
 
-        public void RebuildGrid(int size)
+        public void RebuildGrid(int size, float cellSize)
         {
             DeleteGrid();
             _nSize = size;

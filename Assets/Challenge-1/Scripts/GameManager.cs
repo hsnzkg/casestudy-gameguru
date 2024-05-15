@@ -20,7 +20,7 @@ namespace Case_1
             _gridController.CreateGrid();
             _uiManager.OnBuild += _gridController.RebuildGrid;
 
-            _cameraController.SetCameraForNewGrid(_gridController.NSize);
+            _cameraController.SetCameraForNewGrid(_gridController.NSize,_gridController.CellSize);
             _uiManager.OnBuild += _cameraController.SetCameraForNewGrid;
         }
 

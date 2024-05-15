@@ -1,12 +1,16 @@
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "LevelSettingInstaller", menuName = "Installers/LevelSettingInstaller")]
-public class LevelSettingInstaller : ScriptableObjectInstaller<LevelSettingInstaller>
+namespace Case_2
 {
-    public LevelSettings LevelSettings;
-    public override void InstallBindings()
+    [CreateAssetMenu(fileName = "LevelSettingInstaller", menuName = "Installers/LevelSettingInstaller")]
+    public class LevelSettingInstaller : ScriptableObjectInstaller<LevelSettingInstaller>
     {
-        Container.BindInterfacesAndSelfTo<LevelSettings>().FromInstance(LevelSettings).AsSingle();
+        public LevelSettings LevelSettings;
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<LevelSettings>().FromInstance(LevelSettings).AsSingle();
+        }
     }
 }
+

@@ -4,20 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class NextLevelButton : MonoBehaviour
+namespace Case_2
 {
-    [SerializeField] private Button _button;
-    [Inject] private GameManager _gameManager;
-
-    public void Activate()
+    public class NextLevelButton : MonoBehaviour
     {
-        gameObject.SetActive(true);
-        _button.onClick.AddListener(OnPressed);
+        [SerializeField] private Button _button;
+        [Inject] private GameManager _gameManager;
+
+        public void Activate()
+        {
+            gameObject.SetActive(true);
+            _button.onClick.AddListener(OnPressed);
+        }
+
+        private void OnPressed()
+        {
+            _button.onClick.RemoveAllListeners();
+            _gameManager.ReloadGame();
+        }
     }
 
-    private void OnPressed()
-    {
-        _button.onClick.RemoveAllListeners();
-        _gameManager.ReloadGame();
-    }
 }

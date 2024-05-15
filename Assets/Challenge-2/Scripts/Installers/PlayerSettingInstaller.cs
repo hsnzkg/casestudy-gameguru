@@ -1,12 +1,15 @@
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "PlayerSettingInstaller", menuName = "Installers/PlayerSettingInstaller")]
-public class PlayerSettingInstaller : ScriptableObjectInstaller<AudioSettingInstaller>
+namespace Case_2
 {
-    public PlayerSettings PlayerSetting;
-    public override void InstallBindings()
+    [CreateAssetMenu(fileName = "PlayerSettingInstaller", menuName = "Installers/PlayerSettingInstaller")]
+    public class PlayerSettingInstaller : ScriptableObjectInstaller<AudioSettingInstaller>
     {
-        Container.BindInterfacesAndSelfTo<PlayerSettings>().FromInstance(PlayerSetting).AsSingle();
+        public PlayerSettings PlayerSetting;
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerSettings>().FromInstance(PlayerSetting).AsSingle();
+        }
     }
 }

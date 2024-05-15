@@ -1,12 +1,16 @@
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "BlockMovementSettingInstaller", menuName = "Installers/BlockMovementSettingInstaller")]
-public class BlockMovementSettingInstaller : ScriptableObjectInstaller<BlockMovementSettingInstaller>
+
+namespace Case_2
 {
-    public BlockMovementSetting BlockMovementSetting;
-    public override void InstallBindings()
+    [CreateAssetMenu(fileName = "BlockMovementSettingInstaller", menuName = "Installers/BlockMovementSettingInstaller")]
+    public class BlockMovementSettingInstaller : ScriptableObjectInstaller<BlockMovementSettingInstaller>
     {
-        Container.BindInterfacesAndSelfTo<BlockMovementSetting>().FromInstance(BlockMovementSetting).AsSingle();
+        public BlockMovementSetting BlockMovementSetting;
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<BlockMovementSetting>().FromInstance(BlockMovementSetting).AsSingle();
+        }
     }
 }

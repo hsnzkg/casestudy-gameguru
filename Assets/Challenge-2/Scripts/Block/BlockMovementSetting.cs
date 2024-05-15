@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Settings", menuName = "Settings/BlockMovementSetting")]
-[Serializable]
-public class BlockMovementSetting : ScriptableObject
+namespace Case_2
 {
-    public float BlockMovementDelta;
-    public float SplitGoodThreshold;
-    public float SplitBadThreshold;
+    [CreateAssetMenu(fileName = "Settings", menuName = "Settings/BlockMovementSetting")]
+    [Serializable]
+    public class BlockMovementSetting : ScriptableObject
+    {
+        public float BlockMovementDelta;
+        public float SplitGoodThreshold;
+        public float SplitBadThreshold;
+    }
 }

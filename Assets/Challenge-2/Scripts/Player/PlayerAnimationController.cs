@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+namespace Case_2
 {
-    [SerializeField] private Animator _animator;
-
-    public void UpdateAnimation(bool isRunnning)
+    public class PlayerAnimationController : MonoBehaviour
     {
-        _animator.SetBool("IsRunning", isRunnning);
+        [SerializeField] private Animator _animator;
+
+        public void UpdateAnimation(bool isRunnning)
+        {
+            _animator.SetBool("IsRunning", isRunnning);
+        }
     }
 }

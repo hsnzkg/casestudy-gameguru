@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public static class LayerExtensions
+namespace Case_2
 {
-    public static bool Contains(this LayerMask mask, int layer)
+    public static class LayerExtensions
     {
-        return mask == (mask | (1 << layer));
+        public static bool Contains(this LayerMask mask, int layer)
+        {
+            return mask == (mask | (1 << layer));
+        }
     }
 }

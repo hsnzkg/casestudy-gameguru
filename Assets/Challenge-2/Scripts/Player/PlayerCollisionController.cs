@@ -1,18 +1,21 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayerCollisionController : MonoBehaviour
+namespace Case_2
 {
-    [SerializeField] private Player _player;
-    [Inject] private GameManager _gameManager;
-    public LayerMask FinishDetectionLayer;
-
-    private void OnTriggerEnter(Collider other)
+    public class PlayerCollisionController : MonoBehaviour
     {
-        var layer = other.gameObject.layer;
-        if (FinishDetectionLayer.Contains(layer))
+        [SerializeField] private Player _player;
+        [Inject] private GameManager _gameManager;
+        public LayerMask FinishDetectionLayer;
+
+        private void OnTriggerEnter(Collider other)
         {
-            _gameManager.FinishGame(true);  
+            var layer = other.gameObject.layer;
+            if (FinishDetectionLayer.Contains(layer))
+            {
+                _gameManager.FinishGame(true);
+            }
         }
     }
 }

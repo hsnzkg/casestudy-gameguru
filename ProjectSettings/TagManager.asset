@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Border
+    uniqueID: 1845549069
+    locked: 0
+  - name: Icon
+    uniqueID: 3812780277
+    locked: 0

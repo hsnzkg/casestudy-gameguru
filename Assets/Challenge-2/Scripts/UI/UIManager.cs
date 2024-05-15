@@ -1,10 +1,12 @@
 using UnityEngine;
 
-
-public class UIManager : MonoBehaviour
+namespace Case_2
 {
-    [SerializeField] private NextLevelButton _nextLevelButton;
+    public class UIManager : MonoBehaviour
+    {
+        [SerializeField] private NextLevelButton _nextLevelButton;
 
 
-    public void ActivateNextLevelButton() { _nextLevelButton.Activate(); }
+        public void ActivateNextLevelButton() { _nextLevelButton.Activate(); }
+    }
 }

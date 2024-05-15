@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public interface ICameraController
+namespace Case_2
 {
-    public void SetTarget(Transform t);
-    public void ReleaseTarget();
-    public void SetWinCamera();
+    public interface ICameraController
+    {
+        public void SetTarget(Transform t);
+        public void ReleaseTarget();
+        public void SetWinCamera();
+    }
 }

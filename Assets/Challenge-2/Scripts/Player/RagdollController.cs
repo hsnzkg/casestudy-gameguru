@@ -1,50 +1,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagdollController : MonoBehaviour
+namespace Case_2
 {
-    [SerializeField] private List<Rigidbody> _ragdollRBList;
-    [SerializeField] private List<Collider> _ragdollColliderList;
-    [SerializeField] private Rigidbody _characterRB;
-    [SerializeField] private Collider _characterCollider;
-    [SerializeField] private Animator _chracterAnimator;
-
-    private void Awake()
+    public class RagdollController : MonoBehaviour
     {
-        DeactivateRagdoll();
-    }
+        [SerializeField] private List<Rigidbody> _ragdollRBList;
+        [SerializeField] private List<Collider> _ragdollColliderList;
+        [SerializeField] private Rigidbody _characterRB;
+        [SerializeField] private Collider _characterCollider;
+        [SerializeField] private Animator _chracterAnimator;
 
-    public void ActivateRagdoll()
-    {
-        _characterCollider.enabled = false;
-        _chracterAnimator.enabled = false;
-        _characterRB.useGravity = false;
-
-        foreach (var c in _ragdollColliderList)
+        private void Awake()
         {
-            c.enabled = true;
+            DeactivateRagdoll();
         }
 
-        foreach (var r in _ragdollRBList)
+        public void ActivateRagdoll()
         {
-            r.useGravity = true;
+            _characterCollider.enabled = false;
+            _chracterAnimator.enabled = false;
+            _characterRB.useGravity = false;
+
+            foreach (var c in _ragdollColliderList)
+            {
+                c.enabled = true;
+            }
+
+            foreach (var r in _ragdollRBList)
+            {
+                r.useGravity = true;
+            }
         }
-    }
 
-    public void DeactivateRagdoll()
-    {
-        _characterCollider.enabled = true;
-        _chracterAnimator.enabled = true;
-        _characterRB.useGravity = true;
-
-        foreach (var c in _ragdollColliderList)
+        public void DeactivateRagdoll()
         {
-            c.enabled = false;
-        }
+            _characterCollider.enabled = true;
+            _chracterAnimator.enabled = true;
+            _characterRB.useGravity = true;
 
-        foreach (var r in _ragdollRBList)
-        {
-            r.useGravity = false;
+            foreach (var c in _ragdollColliderList)
+            {
+                c.enabled = false;
+            }
+
+            foreach (var r in _ragdollRBList)
+            {
+                r.useGravity = false;
+            }
         }
     }
 }
